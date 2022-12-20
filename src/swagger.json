@@ -1,0 +1,332 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Consent Manager De-identifier Consent Service",
+        "description": "Swagger Definition for Consent Manager De-identifier Consent Service",
+        "version": "1.0.0"
+    },
+    "tags": [
+        {
+            "name": "De-identifier"
+        },
+        {
+            "name": "Identifier"
+        }
+    ],
+    "servers": [],
+    "paths": {
+        "/api/de-identifier": {
+            "post": {
+                "tags": [
+                    "De-identifier"
+                ],
+                "summary": "De-identifier",
+                "description": "De-identify PII/PHI data",
+                "parameters": [
+                    {
+                        "name": "x-cm-tenantid",
+                        "in": "header",
+                        "description": "TenantID",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                ],
+                "operationId": "de_identifier",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/DeIdentifier"
+                },
+                "responses": {
+                    "200": {
+                        "description": "De-identified PII/PHI data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeIdentifierResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/Error"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/api/de-identifier/search": {
+            "post": {
+                "tags": [
+                    "De-identifier"
+                ],
+                "summary": "De-identifier search",
+                "description": "De-identify PII/PHI data",
+                "parameters": [
+                    {
+                        "name": "x-cm-tenantid",
+                        "in": "header",
+                        "description": "TenantID",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                ],
+                "operationId": "de_identifier",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/DeIdentifier"
+                },
+                "responses": {
+                    "200": {
+                        "description": "De-identified PII/PHI data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeIdentifierResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/Error"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/Error"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/api/identifier": {
+            "post": {
+                "tags": [
+                    "Identifier"
+                ],
+                "summary": "Identifier",
+                "description": "Identify PII/PHI data",
+                "parameters": [
+                    {
+                        "name": "x-cm-tenantid",
+                        "in": "header",
+                        "description": "TenantID",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                ],
+                "operationId": "identifier",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Identifier"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Identified PII/PHI data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IdentifierResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/Error"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/Error"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/api/identifier/batch": {
+            "post": {
+                "tags": [
+                    "Identifier"
+                ],
+                "summary": "Identifier",
+                "description": "Identify PII/PHI data",
+                "parameters": [
+                    {
+                        "name": "x-cm-tenantid",
+                        "in": "header",
+                        "description": "TenantID",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                ],
+                "operationId": "identifier",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/IdentifierDataBatch"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Identified PII/PHI data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IdentifiedDataBatchResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/Error"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/Error"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DeIdentifierRequest": {
+                "type": "object",
+                "required": [
+                    "pii"
+                ],
+                "properties": {
+                    "pii": {
+                        "type": "string",
+                        "description": "Pii data"
+                    }
+                },
+                "description": "DeIdentifierRequest"
+            },
+            "DeIdentifierResponse": {
+                "type": "object",
+                "properties": {
+                    "dePii": {
+                        "type": "string"
+                    }
+                },
+                "description": "DeIdentifierResponse"
+            },
+            "IdentifierRequest": {
+                "type": "object",
+                "required": [
+                    "dePii"
+                ],
+                "properties": {
+                    "dePii": {
+                        "type": "string",
+                        "description": "dePii data"
+                    }
+                },
+                "description": "IdentifierRequest"
+            },
+            "IdentifierResponse": {
+                "type": "object",
+                "properties": {
+                    "pii": {
+                        "type": "string"
+                    }
+                },
+                "description": "IdentifierResponse"
+            },
+            "IdentifierDataBatchRequest": {
+                "type": "object",
+                "required": [
+                    "dataToIdentifyBatch"
+                ],
+                "properties": {
+                    "dataToIdentifyBatch": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "description": "IdentifierDataBatchRequest"
+            },
+            "IdentifiedDataBatchResponse": {
+                "type": "object",
+                "properties": {
+                    "identifiedDataBatch": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "description": "IdentifierResponse"
+            },
+            "ErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Response message"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": "Status code of response"
+                    }
+                },
+                "description": "ErrorResponse"
+            }
+         },
+        "requestBodies": {
+            "DeIdentifier": {
+                "description": "De-identify PII/PHI data",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/DeIdentifierRequest"
+                        }
+                    }
+                }
+            },
+            "Identifier": {
+                "description": "Identify PII/PHI data",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/IdentifierRequest"
+                        }
+                    }
+                }
+            },
+            "IdentifierDataBatch": {
+                "description": "Identify PII/PHI data",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/IdentifierDataBatchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "Error": {
+                "description": "Failed to identify/de-identify PHI data",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

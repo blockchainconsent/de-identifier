@@ -1,0 +1,12 @@
+.git/
+.git/**
+*/*/.git*
+node_modules/
+node_modules/**
+test/
+test/**
+chart/
+chart/**
+package-lock.json
+Dockerfile
+.*

@@ -1,0 +1,62 @@
+nameOverride: "cm-de-identifier"
+fullnameOverride: "cm-de-identifier"
+environment: "development"
+
+replicaCount: 2
+annotations:
+  TOOLCHAIN_ID: null
+  GIT_URL: null
+  GIT_BRANCH: null
+  GIT_COMMIT: null
+  USER_NAME: null
+  APPLICATION_VERSION: null
+config:
+  enableHttps: "false"
+  secretName : "cm-tls-secret-crt"
+  cloudantTimeout: 5000
+image:
+  repository : <helm-repo>
+  tag: <helm-tag>
+  pullPolicy: IfNotPresent
+  pullSecret: regsecret
+database:
+  username: "null"
+  password: "null"
+  name: "null"
+  host: "null"
+  proxyUrl: ""
+keyProtect:
+  endPoint: "null"
+  guid: "null"
+  iamKey: "null"
+service:
+  type:
+  externalPort:
+  internalPort: "null"
+newRelic:
+  enabled: "false"
+  appName: "null"
+  licenseKey: "null"
+
+
+cluster:
+  ingress:
+    enabled: true
+    class: "null"
+    subdomain: "null"
+    secretName: "null"
+    proxyReadTimeout: 300s
+    proxyConnectTimeout: 300s
+    limitRps: 10
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

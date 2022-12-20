@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ template "chart.fullname" . }}-env-configmap
+data:
+  CLOUDANT_USERNAME: {{ required "A valid .Values.database.username entry required!" .Values.database.username }}
+  DB_NAME: {{ required "A valid .Values.database.name entry required!" .Values.database.name }}
+  CLOUDANT_URL: {{ required "A valid .Values.database.host entry required!" .Values.database.host }}
+  NODE_ENV: {{ required "A valid .Values.environment entry required!" .Values.environment }}
+  PORT: "{{ required "A valid .Values.service.internalPort entry required!" .Values.service.internalPort }}"
+  ENABLE_HTTPS: {{ .Values.config.enableHttps | quote }}
+  NEW_RELIC_ENABLED: {{ .Values.newRelic.enabled | quote }}
+  NEW_RELIC_APP_NAME: {{ .Values.newRelic.appName | quote }}
+  CLOUDANT_TIMEOUT: {{ .Values.config.cloudantTimeout | quote }}
+  CLOUDANT_PROXY_URL: {{ .Values.database.proxyUrl | quote }}
+  KEYPROTECT_URL: {{ .Values.keyProtect.endPoint | quote}}
+  KEYPROTECT_GUID: {{ .Values.keyProtect.guid | quote}}
+  NEW_RELIC_HIGH_SECURITY: "true"
+  NEW_RELIC_NO_CONFIG_FILE: "true"
